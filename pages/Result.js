@@ -1,14 +1,19 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { StyleSheet, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet } from "react-native";
 import BaseLayout from "../layout/base";
-import { useRoute } from "@react-navigation/native"; // Importando o hook useRoute
+import { useRoute } from "@react-navigation/native";
+import image from "../assets/Union.png";
 
-import Ring from "../assets/DiamondRing.png";
-import LogoBlack from "../assets/logo-black.png";
-import Button from "../components/Button";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Entypo from "@expo/vector-icons/Entypo";
+import { LinearGradient } from "expo-linear-gradient";
+
 import { Linking } from "react-native";
+
+import { ringSizes } from "../utilz/sizes";
 
 export default function Result({ navigation }) {
   const route = useRoute();
@@ -27,103 +32,81 @@ export default function Result({ navigation }) {
 
   return (
     <BaseLayout>
-      <View style={styles.container}>
-        <View></View>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Image source={image} />
 
-        <View style={styles.imageWrapper}>
-          <Image source={LogoBlack} style={styles.logo} resizeMode="contain" />
+        <Text style={styles.title}>Medida tirada com sucesso!</Text>
 
-          <View style={styles.wrapperImage}>
-            <Image style={styles.handImage} source={Ring} />
-          </View>
-
-          <View style={styles.resultsWrapper}>
-            <View>
-              <Text style={styles.title}>O tamanho ideal é</Text>
-
-              <View style={styles.results}>
-                <View style={styles.result}>
-                  <Text style={styles.resultText}>{size}</Text>
-                </View>
-
-                <View style={styles.result}>
-                  <Text style={styles.resultText}>
-                    {(size * 1.05).toFixed(2)}
-                    {"\n"}mm
-                  </Text>
-                </View>
-
-                <View style={styles.result}>
-                  <Text style={styles.resultText}>
-                    {(size * 0.35).toFixed(2)}
-                    {"\n"}cm
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.buttonsWrapper}>
-          <TouchableOpacity
-            onPress={redirectToWhatsApp}
-            style={styles.whatsappButton}
-          >
-            <FontAwesome name="whatsapp" size={24} color="white" />
-            <Text style={styles.whatsappText}>Fazer orçamento</Text>
-          </TouchableOpacity>
-
-          <Button onPress={() => navigation.goBack()}>Voltar</Button>
-        </View>
+        <Text style={styles.subtitle}>
+          Agora entre em contato conosco por Whatsapp para fazermos um
+          orçamento.
+        </Text>
       </View>
+
+      <View style={styles.wrapper}>
+        <Text style={styles.resultText}>O tamanho ideal é: {size}</Text>
+
+        <LinearGradient
+          colors={["#1F1F1F", "rgba(31, 31, 31, 0)"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.badge}
+        >
+          <MaterialCommunityIcons
+            name="diameter-outline"
+            size={15}
+            color="white"
+          />
+          <Text style={styles.badgeText}>
+            Comprimento (cm): {ringSizes[size].comprimento}
+          </Text>
+        </LinearGradient>
+
+        <LinearGradient
+          colors={["#1F1F1F", "rgba(31, 31, 31, 0)"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.badge}
+        >
+          <Entypo name="circle" size={15} color="white" />
+          <Text style={styles.badgeText}>
+            Diâmetro (mm): {ringSizes[size].diameter}
+          </Text>
+        </LinearGradient>
+      </View>
+
+      <TouchableOpacity
+        onPress={redirectToWhatsApp}
+        style={styles.whatsappButton}
+      >
+        <FontAwesome name="whatsapp" size={24} color="white" />
+        <Text style={styles.whatsappText}>Fale conosco agora</Text>
+      </TouchableOpacity>
     </BaseLayout>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     flex: 1,
-    width: "100%",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "white",
-  },
-
-  imageWrapper: {
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    padding: 10,
   },
 
   title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
+    fontSize: 22,
+    color: "white",
     textAlign: "center",
-    color: "black",
-    textTransform: "uppercase",
   },
 
-  handImage: {
-    width: "100%",
-    height: 200,
-    resizeMode: "contain",
-  },
-
-  wrapperImage: {
-    width: "80%",
-    borderColor: "black",
-    borderWidth: 1,
-    borderBottomWidth: 2,
-    borderBottomColor: "black",
-    borderRadius: 20,
-    position: "relative",
-  },
-
-  resultsWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 40,
+  subtitle: {
+    fontSize: 14,
+    color: "white",
+    textAlign: "center",
+    marginTop: 10,
+    fontFamily: "Urbanist-Regular",
   },
 
   results: {
@@ -143,10 +126,19 @@ const styles = StyleSheet.create({
   },
 
   resultText: {
-    fontSize: 14,
+    fontSize: 16,
     color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
+    marginVertical: 10,
+    fontFamily: "Urbanist-Medium",
+  },
+
+  badge: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderLeftWidth: 1,
+    borderLeftColor: "white",
+    marginVertical: 10,
+    padding: 10,
   },
 
   absoluteBalls: {
@@ -155,18 +147,18 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 
-  ball: {
-    height: 120,
-    width: 120,
-    backgroundColor: "black",
-    borderRadius: 99999,
+  badgeText: {
+    fontSize: 16,
+    color: "white",
+    marginLeft: 5,
+    fontFamily: "Urbanist-Regular",
   },
 
   whatsappButton: {
     backgroundColor: "#25d366",
     width: "100%",
     padding: 14,
-    borderRadius: 40,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
@@ -191,5 +183,22 @@ const styles = StyleSheet.create({
   logo: {
     width: "100%",
     height: 100,
+  },
+
+  wrapper: {
+    borderColor: "rgba(38, 38, 38, 1)",
+    borderWidth: 2,
+    borderRadius: 8,
+    width: "100%",
+    padding: 20,
+    marginBottom: 20,
+
+    // Shadow for iOS
+    shadowColor: "rgba(25, 25, 25, 1)",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 6,
+    // Shadow for Android
+    elevation: 6,
   },
 });

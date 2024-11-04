@@ -2,22 +2,19 @@ import React from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
 import Button from "../components/Button";
 import BaseLayout from "../layout/base";
-import Correct from "../assets/correct.png";
-import Wrong from "../assets/wrong.png";
+import Correct from "../assets/Right.gif";
+import Wrong from "../assets/Wrong.gif";
 import Logo from "../assets/logo.png";
 
 import AntDesign from "@expo/vector-icons/AntDesign";
-import Entypo from "@expo/vector-icons/Entypo";
 
 export default function Welcome({ navigation }) {
   return (
     <BaseLayout>
-      <View style={styles.container}>
+      <Image source={Logo} style={styles.logo} resizeMode="contain" />
+
+      <View style={{ flex: 1, justifyContent: "center" }}>
         <View style={{ alignItems: "center" }}>
-          <Image source={Logo} style={styles.logo} resizeMode="contain" />
-
-          <Text style={styles.title}>vamos iniciar</Text>
-
           <View style={styles.imageWrapper}>
             <View style={styles.wrongWrapper}>
               <Image style={styles.image} source={Wrong} />
@@ -35,63 +32,52 @@ export default function Welcome({ navigation }) {
               </View>
             </View>
           </View>
+        </View>
 
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                alignItems: "center",
-                marginTop: 2,
-                marginLeft: 10,
-                marginRight: 10,
-              }}
-            >
-              <View style={styles.circle} />
-              <View style={[styles.line, { height: 45 }]} />
-              <View style={styles.circle} />
-              <View style={[styles.line, { height: 42 }]} />
-              <View style={styles.circle} />
-            </View>
+        <View style={styles.wrapper}>
+          <View
+            style={{
+              alignItems: "center",
+              paddingTop: 5,
+            }}
+          >
+            <View style={styles.circle} />
 
-            <View style={styles.textWrapper}>
-              <View>
-                <Text style={styles.text}>
-                  Posicione o diamante sobre o anel na próxima tela e mova o
-                  controle para ajustar o tamanho.
-                </Text>
-              </View>
+            <View style={[styles.line, { height: 32 }]} />
 
-              <Text style={styles.text}>
-                Verifique se o diamante está ajustado corretamente ao tamanho do
-                anel.
-              </Text>
+            <View style={styles.circle} />
 
-              <Text style={styles.text}>
-                Tente manter o celular na altura dos olhos, como mostrado na
-                ilustração, e feche um dos olhos para uma melhor visão.
-              </Text>
-            </View>
+            <View style={[styles.line, { height: 32 }]} />
+
+            <View style={styles.circle} />
+          </View>
+
+          <View style={{ gap: 32, flex: 1 }}>
+            <Text style={styles.text}>
+              Coloque o celular sobre uma superfície plana e o anel sobre a
+              tela.
+            </Text>
+
+            <Text style={styles.text}>
+              Posicione o anel sobre o diamante e mova o controle para ajustar o
+              tamanho.
+            </Text>
+
+            <Text style={styles.text}>
+              O diamante deve encaixar corretamente na parte interna do anel.
+            </Text>
           </View>
         </View>
-
-        <View style={{ maxWidth: 300 }}>
-          <Button onPress={() => navigation.navigate("RingSizer")}>
-            Ok entendi, proseguir
-          </Button>
-        </View>
       </View>
+
+      <Button onPress={() => navigation.navigate("RingSizer")}>
+        Vamos começar?
+      </Button>
     </BaseLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    flex: 1,
-    justifyContent: "space-around",
-    alignItems: "center",
-    padding: 10,
-  },
-
   image: {
     width: 120,
     height: 120,
@@ -113,49 +99,34 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  logo: {
+    width: "100%",
+    height: 15,
+    marginTop: 40,
+    marginVertical: 30,
+  },
+
+  wrapper: {
+    borderColor: "rgba(38, 38, 38, 1)",
+    borderWidth: 2,
+    borderRadius: 8,
+    flexDirection: "row",
+    width: "100%",
+    marginVertical: 20,
+    padding: 16,
+    paddingTop: 30,
+    gap: 10,
+  },
+
   wrongWrapper: {
     flex: 1,
     position: "relative",
     alignItems: "center",
   },
 
-  textWrapper: {
-    alignSelf: "stretch",
-    marginBottom: 40,
-  },
-
   text: {
-    textAlign: "left",
     color: "white",
-    fontFamily: "Inter",
-    fontWeight: "400",
-    marginBottom: 40,
-  },
-
-  button: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  title: {
-    width: "100%",
-    fontSize: 20,
-    marginTop: 10,
-    fontFamily: "Cinzel",
-    color: "white",
-    textTransform: "uppercase",
-  },
-
-  titleText: {
-    marginBottom: 20,
-    textAlign: "center",
-  },
-
-  logo: {
-    width: 200,
-    height: 120,
-    justifyContent: "center",
+    fontFamily: "Urbanist-Regular",
   },
 
   checkIcon: {

@@ -6,11 +6,6 @@ const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <Image source={Logo} style={styles.logo} resizeMode="contain" />
-
-      <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Carregando</Text>
-        <ActivityIndicator size="small" color="white" />
-      </View>
     </View>
   );
 };
@@ -20,11 +15,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "black",
+    backgroundColor: "#141414",
   },
   logo: {
     width: "100%",
-    height: 240,
+    height: 34,
     marginBottom: 20,
   },
   loadingContainer: {

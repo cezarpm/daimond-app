@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "diamond-app",
+    "name": "Medidor de Anéis",
     "slug": "diamond-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,7 +12,8 @@
       "backgroundColor": "#000000"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.daimond.medidorapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +22,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo.png"
     },
     "extra": {
       "eas": {

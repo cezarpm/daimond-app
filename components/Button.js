@@ -1,18 +1,17 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
-const Button = ({ children, onPress, variant = "white" }) => {
-  // Define os estilos com base na prop `variant`
+const Button = ({ children, onPress, variant = "white", outline = false }) => {
   const buttonStyle = [
     styles.button,
-    variant === "white" && styles.buttonWhite,
-    variant === "black" && styles.buttonBlack,
+    variant === "white" &&
+      (outline ? styles.buttonOutlined : styles.buttonSolid),
   ];
 
   const textStyle = [
     styles.buttonText,
-    variant === "white" && styles.buttonTextBlack,
-    variant === "black" && styles.buttonTextWhite,
+    variant === "white" &&
+      (outline ? styles.buttonTextBlack : styles.buttonTextWhite),
   ];
 
   return (
@@ -25,29 +24,30 @@ const Button = ({ children, onPress, variant = "white" }) => {
 const styles = StyleSheet.create({
   button: {
     width: "100%",
-    borderRadius: 40,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    borderRadius: 12,
+    paddingVertical: 18,
+    paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
   },
-  buttonBlack: {
-    backgroundColor: "#000", // Fundo preto
-  },
-  buttonWhite: {
+  buttonSolid: {
     backgroundColor: "#fff", // Fundo branco
+  },
+  buttonOutlined: {
+    backgroundColor: "transparent", // Fundo transparente para o estilo outlined
     borderWidth: 1,
-    borderColor: "#a1a1aa", // Borda preta para contraste no botão branco
+    borderColor: "#fff", // Borda branca
   },
   buttonText: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "bold",
+    fontFamily: "Urbanist-Medium",
   },
   buttonTextWhite: {
-    color: "#fff", // Texto branco
+    color: "#000", // Texto preto para o botão sólido
   },
   buttonTextBlack: {
-    color: "#000", // Texto preto
+    color: "#fff", // Texto branco para o botão outlined
   },
 });
 

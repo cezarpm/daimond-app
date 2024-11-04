@@ -12,12 +12,13 @@ const BaseLayout = ({ children }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "rgba(20, 20, 20, 1)",
   },
   content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    margin: 32,
   },
 });
 
