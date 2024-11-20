@@ -17,7 +17,7 @@ import image from "../assets/regua.png";
 import diamond from "../assets/diamond.png";
 
 export default function RingSizer({ navigation }) {
-  const [size, setSize] = useState(1);
+  const [size, setSize] = useState(16);
   const [left] = useState(45);
 
   const flatListRef = useRef(null); // Add a ref for FlatList
@@ -81,7 +81,7 @@ export default function RingSizer({ navigation }) {
 
           <Slider
             style={styles.slider}
-            minimumValue={1}
+            minimumValue={16}
             maximumValue={45}
             step={1}
             value={size}

@@ -15,8 +15,6 @@ export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
 
   useFonts({
-    Inter: require("./assets/Inter_400Regular.ttf"),
-    Cinzel: require("./assets/Cinzel_700Bold.ttf"),
     "Urbanist-Regular": require("./assets/Urbanist-Regular.ttf"),
     "Urbanist-Bold": require("./assets/Urbanist-Bold.ttf"),
     "Urbanist-Medium": require("./assets/Urbanist-Medium.ttf"),

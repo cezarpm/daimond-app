@@ -20,7 +20,7 @@ export default function Result({ navigation }) {
   const { size } = route.params;
 
   const redirectToWhatsApp = () => {
-    const phoneNumber = "+554891370777";
+    const phoneNumber = "+5548991980888";
     const message = `Olá, gostaria de saber mais sobre o anel de tamanho ${size}.`;
 
     const url = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(
@@ -58,7 +58,7 @@ export default function Result({ navigation }) {
             color="white"
           />
           <Text style={styles.badgeText}>
-            Comprimento (cm): {ringSizes[size].comprimento}
+            Comprimento (cm): {ringSizes[size]?.comprimento}
           </Text>
         </LinearGradient>
 
@@ -70,7 +70,7 @@ export default function Result({ navigation }) {
         >
           <Entypo name="circle" size={15} color="white" />
           <Text style={styles.badgeText}>
-            Diâmetro (mm): {ringSizes[size].diameter}
+            Diâmetro (mm): {ringSizes[size]?.diameter}
           </Text>
         </LinearGradient>
       </View>
